@@ -206,6 +206,24 @@ class CustomerOrderServiceImplTest {
     }
 
     @Test
+    void findOrderByFilters_filterByDateInterval_EqualsDateStart_And_DateEnd() {
+        LocalDate startDate = LocalDate.of(2025, 5, 10);
+        LocalDate endDate = LocalDate.of(2025, 5, 10);
+
+        List<CustomerOrderData> mockOrders = List.of(new CustomerOrderData("2", 789, "Pedido 2", List.of()));
+
+        Query expectedQuery = new Query();
+        expectedQuery.addCriteria(Criteria.where("orders.date").gte(startDate).lte(endDate));
+
+        when(mongoTemplate.find(expectedQuery, CustomerOrderData.class)).thenReturn(mockOrders);
+
+        List<CustomerOrderData> result = customerOrderService.findOrderByFilters(null, startDate, endDate);
+
+        assertEquals(1, result.size());
+        assertEquals(789, result.get(0).getUserId());
+    }
+
+    @Test
     void findOrderByFilters_WithOutFilter_ShouldReturn() {
         List<CustomerOrderData> mockOrders = List.of(
                 new CustomerOrderData("1", 123, "Pedido 1", List.of()),
@@ -218,4 +236,5 @@ class CustomerOrderServiceImplTest {
 
         assertEquals(2, result.size());
     }
+
 }

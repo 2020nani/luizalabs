@@ -63,7 +63,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
     }
 
     private boolean validRangeDate(LocalDate startDate, LocalDate endDate) {
-        return startDate.isBefore(endDate) && startDate.isEqual(endDate);
+        return startDate.isBefore(endDate) || startDate.isEqual(endDate);
     }
 
     @Override
