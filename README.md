@@ -8,8 +8,11 @@ Desafio técnico proposto pela **LuizaLabs**.
 A Arquitetura Limpa (Clean Architecture) foi escolhida para a API REST porque garante baixo acoplamento, alta testabilidade e fácil manutenção, separando a aplicação em três camadas bem definidas:
 
 **Application** → Gerencia a entrada e saída de dados, incluindo controladores e casos de uso.
+
 **Infrastructure** → Lida com configuração e adaptadores, abstraindo bancos de dados e APIs externas.
+
 **Core** (Domínio) → Define as regras de negócio e entidades, mantendo independência da infraestrutura.
+
 Essa arquitetura foi escolhida porque favorece modularidade, escalabilidade e organização, permitindo que mudanças na infraestrutura (como trocar o banco de dados ou adicionar um novo serviço) não impactem as regras de negócio. Além disso, facilita a escrita de testes unitários, pois o domínio não depende de frameworks ou tecnologias externas. A estrutura segue os princípios SOLID e DDD, tornando a API mais sustentável e evolutiva
 ---
 
