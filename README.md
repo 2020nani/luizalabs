@@ -35,8 +35,9 @@ src/main/java/com/luizalabs_desafio/
 │   ├── exception         # Exceções customizadas
     ├── utils             # Funções genericas e customizadas
 ├── infrastructure
-│   ├── adapter           # tem a função de fazer a ponte entre a camada de domínio (Core) e tecnologias externas
-│   ├── repository     # interfaces e implementações que lidam com bancos de dados ou armazenamento externo.
+│   ├── adapter           # Tem a função de fazer a ponte entre a camada de domínio (Core) e tecnologias externas
+│   ├── repository     # Interfaces e implementações que lidam com bancos de dados ou armazenamento externo.
+│   ├── swagger     # Documentação open api.
 ```
 # Detalhes do Projeto
 Este projeto é uma **API RESTful** desenvolvida com **Java e Spring Boot**, focada no gerenciamento de pedidos de clientes. Utiliza **MongoDB** como base de dados NoSQL e aplica uma arquitetura em camadas com boas práticas de desenvolvimento.
@@ -77,18 +78,22 @@ Pré-requisitos:
 
 # Passos
 
-# Clonar o repositório
-git clone https://github.com/2020nani/luizalabs.git
+- Clonar o repositório
 
-# Entrar na pasta raiz do repositorio
-cd luizalabs
+  `git clone https://github.com/2020nani/luizalabs.git`
 
-# Build do projeto
-./mvnw clean install
+- Entrar na pasta raiz do repositorio
+  
+  `cd luizalabs`
 
-# Subir o MongoDB/Build Projeto com Docker
-docker-compose up -d
+- Subir o MongoDB/Build Projeto com Docker
+  
+  `docker-compose up -d`
 
-Api esta sendo acessada via localhost (http://localhost:8080)
+   Api esta sendo acessada via localhost (http://localhost:8080)
 
-Para obter a collection com os endpoints utilizados esta dentro da raiz deles
+   A collection com os endpoints utilizados esta dentro da raiz do projeto
+   
+   Para testar a api pode se utilizar a collection do postman ou utilizar a documentação da api (Swagger) acessando a url
+
+  http://localhost:8080/luizalabs/v1/swagger-ui/index.html
