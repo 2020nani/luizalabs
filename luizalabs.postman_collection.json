@@ -1,0 +1,360 @@
+{
+	"info": {
+		"_postman_id": "1a5655fe-b7b2-4002-a171-b7db66bb0a09",
+		"name": "luizalabs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "carregar arquivos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Dell/Downloads/desafio-tecnico/data_1.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/luizalabs/v1/upload-file-order?file=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"luizalabs",
+						"v1",
+						"upload-file-order"
+					],
+					"query": [
+						{
+							"key": "file",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carregar arquivos 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Dell/Downloads/desafio-tecnico/data_2.txt"
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/luizalabs/v1/upload-file-order?file=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"luizalabs",
+						"v1",
+						"upload-file-order"
+					],
+					"query": [
+						{
+							"key": "file",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar pedidos sem filtro",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Dell/Downloads/desafio-tecnico/data_2.txt"
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/luizalabs/v1/user/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"luizalabs",
+						"v1",
+						"user",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar pedidos filtro orderId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Dell/Downloads/desafio-tecnico/data_2.txt"
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/luizalabs/v1/user/order?orderId=753",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"luizalabs",
+						"v1",
+						"user",
+						"order"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "753"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar pedidos filtro orderId e periodo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Dell/Downloads/desafio-tecnico/data_2.txt"
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/luizalabs/v1/user/order?orderId=753&startDate=2021-03-07&endDate=2021-12-07",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"luizalabs",
+						"v1",
+						"user",
+						"order"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "753"
+						},
+						{
+							"key": "startDate",
+							"value": "2021-03-07"
+						},
+						{
+							"key": "endDate",
+							"value": "2021-12-07"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar pedidos filtro periodos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Dell/Downloads/desafio-tecnico/data_2.txt"
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/luizalabs/v1/user/order?startDate=2021-03-07&endDate=2021-03-08",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"luizalabs",
+						"v1",
+						"user",
+						"order"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-03-07"
+						},
+						{
+							"key": "endDate",
+							"value": "2021-03-08"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar pedidos por userId Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Dell/Downloads/desafio-tecnico/data_2.txt"
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/luizalabs/v1/order/70",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"luizalabs",
+						"v1",
+						"order",
+						"70"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

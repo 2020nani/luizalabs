@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+
+  luizalabs-api:
+    container_name: luizalabs-api
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - '8080:8080'
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/luizalabs?replicaSet=rs0
+    networks:
+      - luizalabs-single
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    hostname: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - luizalabs-single
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh mongo:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: [ "mongod", "--replSet", "rs0", "--bind_ip", "localhost,mongo" ]
+    restart: "always"
+
+  mongo-init-replica:
+    image: mongo:latest
+    container_name: mongo-init-replica
+    depends_on:
+      - mongo
+    networks:
+      - luizalabs-single
+    restart: "no"
+    entrypoint: >
+      bash -c "
+        echo 'Aguardando MongoDB iniciar...';
+        until mongosh --host mongo:27017 --eval 'db.runCommand({ ping: 1 })' > /dev/null 2>&1; do
+          echo 'Mongo ainda não está pronto...';
+          sleep 2;
+        done;
+
+        echo 'Iniciando replicaset...';
+        mongosh --host mongo:27017 --eval '
+          rs.initiate({
+            _id: \"rs0\",
+            members: [ { _id: 0, host: \"mongo:27017\" } ]
+          });
+        ';
+      "
+
+volumes:
+  mongo-data:
+
+networks:
+  luizalabs-single:
+    driver: bridge

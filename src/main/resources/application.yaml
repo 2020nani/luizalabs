@@ -1,0 +1,80 @@
+spring:
+  main:
+    lazy-initialization: false
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 3600                   # Cache de 1 hora
+          cache-private: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/luizalabs?replicaSet=rs0}
+      auto-index-creation: true
+  datasource:
+    hikari:
+      maximum-pool-size: 20               # N�mero m�ximo de conex�es no pool
+      minimum-idle: 5                     # N�mero m�nimo de conex�es ociosas
+      idle-timeout: 30000                 # Tempo de ociosidade antes de fechar conex�es
+      connection-timeout: 20000           # Tempo limite para obter uma conex�o
+      max-lifetime: 1800000               # Tempo m�ximo de vida para uma conex�o
+  jackson:
+    default-property-inclusion: "non_null" # Ignorar propriedades nulas
+    serialization:
+      indent-output: false                 # Desabilitar sa�da formatada
+      FAIL_ON_EMPTY_BEANS: 'false'      # Evitar falhas em beans vazios
+
+server:
+  compression:
+    enabled: true                         # Ativa a compacta��o
+    mime-types: "application/json,application/xml,text/html,text/xml,text/plain"
+    min-response-size: 1024               # Compacta respostas maiores que 1KB
+  tomcat:
+    max-http-header-size: 8192          # Tamanho m�ximo de cabe�alhos HTTP
+    max-swallow-size: 2MB               # Tamanho m�ximo de requests
+    threads:
+      min-spare: 10                      # Threads m�nimas em espera
+      max: 200                           # Threads m�ximas
+    accept-count: 100                    # Tamanho da fila de conex�es pendentes
+  servlet:
+    contextPath: /luizalabs/v1
+    multipart:
+      max-file-size: 2MB                 # Limite de tamanho para arquivos
+      max-request-size: 2MB
+      enabled: true
+  error:
+    include-message: always
+
+# Garbage Collection
+java:
+  opts:
+    - "-XX:+UseG1GC"                         # Ativar G1GC
+    - "-XX:MaxGCPauseMillis=200"             # Pausas abaixo de 200ms
+    - "-XX:+HeapDumpOnOutOfMemoryError"      # Gera heap dump em caso de OOM
+    - "-XX:HeapDumpPath=/var/logs/dump.hprof" # Local do heap dump
+    - "-Xms512m -Xmx2048m"                   # Mem�ria inicial e m�xima
+    - "-XX:InitiatingHeapOccupancyPercent=45" # Gatilho para coleta de lixo
+
+# Monitoramento e Logs para Performance
+logging:
+  level:
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql: TRACE
+  file:
+    name: "/var/logs/springboot.log"
+
+info:
+  app:
+    name: luiza labs desafio
+    description: Api receber e enviar dados de pedidos
+    version: 1
+    encoding: 1
+    java:
+      version: 21
+##webpack
+host:
+  access:
+    cors: http://localhost:4200
