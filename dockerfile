@@ -1,16 +1,3 @@
-#FROM azul/zulu-openjdk-alpine:21
-#
-#RUN apk add --no-cache maven
-#WORKDIR /app
-#COPY . .
-#RUN mvn clean package
-#
-#ARG JAR_FILE=target/*.jar
-#COPY ${JAR_FILE} /opt/app/app.jar
-#
-#WORKDIR /opt/app
-#ENTRYPOINT ["sh", "-c", "echo MONGO_URI=$MONGO_URI && java -jar /opt/app/app.jar"]
-# Etapa de build
 FROM azul/zulu-openjdk-alpine:21 AS builder
 
 # Instala Maven e dependências necessárias
@@ -34,7 +21,7 @@ WORKDIR /opt/app
 COPY --from=builder /app/target/*.jar /opt/app/app.jar
 
 # Entrypoint
-ENTRYPOINT ["sh", "-c", "echo MONGO_URI=$MONGO_URI && java -jar /opt/app/app.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar /opt/app/app.jar"]
 
 
 
